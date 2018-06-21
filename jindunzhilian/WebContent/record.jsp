@@ -144,10 +144,13 @@
 									<th>通行记录</th>
 								</tr>
 							</thead>
-							<tbody>									
+							<tbody>
+							<%
+								String username = (String)session.getAttribute("username");
+							%>									
 								<tr>
 									<td>
-										烟台市平顺物流有限公司
+										<%=username %>
 									</td>
 									<td>
 										00126988

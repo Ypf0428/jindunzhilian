@@ -84,13 +84,12 @@
 					<div class="clear"></div>
 				</ul>
 				<div class="logoin pull-right">
+				<%
+					String username = (String)session.getAttribute("username");
+				%>
 					<a href="logoin.jsp" class="ac">
 						<i class="icon iconfont">&#xe60c;</i>
-						登录
-					</a>
-					<a href="enroll.jsp" >
-						<i class="icon iconfont" >&#xe697;</i>
-						注册
+						<%=username %>
 					</a>
 				</div>
 			</div>		

@@ -15,6 +15,16 @@
 <link href="css/animate.min.css" rel="stylesheet" />
 </head>
 <body>
+<%
+String Failure = (String)request.getAttribute("Failure");
+if(Failure != null){
+	%>
+	<script type="text/javascript" language="javascript">
+	alert("<%=Failure%>");
+	</script>
+	<%
+}
+%>
 <div class="header">
 		<div class="container">
 			<div class="row header_box">
