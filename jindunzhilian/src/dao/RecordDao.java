@@ -44,7 +44,7 @@ public class RecordDao {
 //	}
 	
 	/*获取当前页面中所有通行记录*/
-	public List<Record> getRecordCurrentPage(int currentPage,int pageSize,String arrivalTime){
+	public List<Record> getRecordCurrentPage(int currentPage,int pageSize,String arrivalTime,String username){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -54,11 +54,13 @@ public class RecordDao {
 		List<Record> records = new ArrayList<Record>();
 		try {
 		con = JinDunUtil.getDataSourceWithC3p0ByXML ().getConnection();
-			String sql = "select * from (select rownum r,t.* from (select s.* from (select * from Record where arrivaltime like ?) s order by arrivaltime asc ) t where rownum<= ? ) where r>= ?";
+			String sql = "select * from (select rownum r,t.* from (select s.* from (select * from Record where arrivaltime like ? and LTID=(select LTID from userinformation where username=?)) s order by arrivaltime asc ) t where rownum<= ? ) where r>= ?";
 			pstmt= con.prepareStatement(sql);
 			pstmt.setString(1, str1);
-			pstmt.setInt(2, currentPage * pageSize);
-			pstmt.setInt(3, (currentPage - 1) * pageSize + 1);
+			pstmt.setString(2, username);
+			pstmt.setInt(3, currentPage * pageSize);
+			pstmt.setInt(4, (currentPage - 1) * pageSize + 1);
+			
 			rs= pstmt.executeQuery();
 			while(rs.next()) {
 				int LTID = rs.getInt("LTID");
@@ -103,13 +105,13 @@ public class RecordDao {
 
 	
 	/**获取数据总条数*/
-	public int getTotalCount(String arrivaltime) {
+	public int getTotalCount(String arrivaltime,String username) {
 		/*创建QueryRunner对象查询*/
 		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
 		String str = arrivaltime.substring(0,7);
 		String str1 = "%"+str+"%";
-		String sql = "select count(1) count from (select * from Record where arrivaltime like ?)";
-		Object[] obj = {str1};
+		String sql = "select count(1) count from (select * from Record where arrivaltime like ? and LTID=(select LTID from userinformation where username=?))";
+		Object[] obj = {str1,username};
 		try {
 			Object result = runner.query(sql,obj, new ScalarHandler());
 			return  (Integer.parseInt(result.toString()));

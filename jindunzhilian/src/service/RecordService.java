@@ -20,12 +20,12 @@ public class RecordService {
 //	}
 	
 	/*获取数据总条数*/
-	public int getTotalCount(String arrivalTime) {
-		return dao.getTotalCount(arrivalTime);
+	public int getTotalCount(String arrivalTime,String username) {
+		return dao.getTotalCount(arrivalTime,username);
 	}
 	
 	/*获取当前页面中所有通行记录*/
-	public List<Record> getRecordCurrentPage(int currentPage,int pageSize,String arrivalTime){
-		return dao.getRecordCurrentPage(currentPage, pageSize, arrivalTime);
+	public List<Record> getRecordCurrentPage(int currentPage,int pageSize,String arrivalTime,String username){
+		return dao.getRecordCurrentPage(currentPage, pageSize, arrivalTime,username);
 	}
 }

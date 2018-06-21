@@ -116,10 +116,10 @@
 							class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
-									<th>鲁通卡号</th>
-									<th>车牌号码</th>
+									<th width="4%">鲁通卡号</th>
+									<th width="11%">车牌号码</th>
 									<th width="50%">交易摘要</th>
-									<th>消费金额</th>
+									<th width="10%">消费金额</th>
 									<th>消费时间</th>
 								</tr>
 							</thead>
@@ -160,7 +160,7 @@
 											</div>
 											<div class="col-xs-10 txt">
 												<p>
-													合计消费金额：<span>￥<%=totalCost%></span>扣款金额：<span>￥99.9</span>
+													合计消费金额：<span>￥<%=totalCost%></span>扣款金额：<span>￥9.9</span>
 												</p>
 											</div>
 										</div>
@@ -178,17 +178,17 @@
 							//只要不是首页，则可以点击 首页 和 上一页 
 							if (currentPageIndex > 1) {
 						%> <!-- 超链接路径名与变量之间不能有空格 --> <a
-						href="QueryRecordDetailsServlet?currentPage=1&&arrivaltime=<%=res.get(0).getArrivaltime()%>">首页</a>&nbsp;&nbsp;
+						href="QueryRecordDetailsServlet?currentPage=1&&arrivaltime=<%=res.get(0).getArrivaltime()%>&&username=<%=pages.getUsername()%>">首页</a>&nbsp;&nbsp;
 						<a
-						href="QueryRecordDetailsServlet?currentPage=<%=currentPageIndex - 1%>&&arrivaltime=<%=res.get(0).getArrivaltime()%>">上一页</a>&nbsp;&nbsp;
+						href="QueryRecordDetailsServlet?currentPage=<%=currentPageIndex - 1%>&&arrivaltime=<%=res.get(0).getArrivaltime()%>&&username=<%=pages.getUsername()%>">上一页</a>&nbsp;&nbsp;
 						<%
 							}
 							//只要不是末页，则可以点击 末页 和 下一页 
 							if (currentPageIndex < totalPages) {
 						%> <!-- 超链接路径名与变量之间不能有空格 --> <a
-						href="QueryRecordDetailsServlet?currentPage=<%=currentPageIndex + 1%>&&arrivaltime=<%=res.get(0).getArrivaltime()%>">下一页</a>&nbsp;&nbsp;
+						href="QueryRecordDetailsServlet?currentPage=<%=currentPageIndex + 1%>&&arrivaltime=<%=res.get(0).getArrivaltime()%>&&username=<%=pages.getUsername()%>">下一页</a>&nbsp;&nbsp;
 						<a
-						href="QueryRecordDetailsServlet?currentPage=<%=totalPages%>&&arrivaltime=<%=res.get(0).getArrivaltime()%>">末页</a>&nbsp;&nbsp;
+						href="QueryRecordDetailsServlet?currentPage=<%=totalPages%>&&arrivaltime=<%=res.get(0).getArrivaltime()%>&&username=<%=pages.getUsername()%>">末页</a>&nbsp;&nbsp;
 						<%
 							}
 						%>

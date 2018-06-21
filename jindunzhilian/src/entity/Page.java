@@ -13,6 +13,8 @@ public class Page {
 	 private int currentPage;
 	 // 实体类集合;如List<Student> students，用来保存当前页面中全部学生的信息
 	 private List<Record> records;
+	 //用户名
+	 private String username;
 	
 	 public Page() {
 		super();
@@ -62,6 +64,14 @@ public class Page {
 
 	public void setRecords(List<Record> records) {
 		this.records = records;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 

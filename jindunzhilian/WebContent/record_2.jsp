@@ -17,6 +17,10 @@
 </style>
 </head>
 <body>
+<%
+//String username = (String)session.getAttribute("username");
+String username="user02";
+%>
 	<div class="header">
 		<div class="container">
 			<div class="row header_box">
@@ -112,7 +116,7 @@
 								<tr class="text-center">
 									<td>2017年07月通行账单</td>
 									<td>
-										<form action="QueryRecordDetailsServlet?arrivaltime=2017/07/。。。" method="post">
+										<form action="QueryRecordDetailsServlet?arrivaltime=2017/07/。。。&&username=<%=username%>" method="post">
 											<input type="submit" class="btn btn-xs btn btn-danger"
 												value="查看详情">
 										</form>
@@ -122,7 +126,7 @@
 								<tr class="text-center">
 									<td>2017年08月通行账单</td>
 									<td>
-										<form action="QueryRecordDetailsServlet?arrivaltime=2017/08/。。。" method="post">
+										<form action="QueryRecordDetailsServlet?arrivaltime=2017/08/。。。&&username=<%=username%>" method="post">
 											<input type="submit" class="btn btn-xs btn btn-danger"
 												value="查看详情">
 										</form>
@@ -132,7 +136,7 @@
 								<tr class="text-center">
 									<td>2017年09月通行账单</td>
 									<td>
-										<form action="QueryRecordDetailsServlet?arrivaltime=2017/09/。。。" method="post">
+										<form action="QueryRecordDetailsServlet?arrivaltime=2017/09/。。。&&username=<%=username %>" method="post">
 											<input type="submit" class="btn btn-xs btn btn-danger"
 												value="查看详情">
 										</form>
@@ -142,7 +146,7 @@
 								<tr class="text-center">
 									<td>2017年10月通行账单</td>
 									<td>
-										<form action="QueryRecordDetailsServlet?arrivaltime=2017/10/。。。" method="post">
+										<form action="QueryRecordDetailsServlet?arrivaltime=2017/10/。。。&&username=<%=username %>" method="post">
 											<input type="submit" class="btn btn-xs btn btn-danger"
 												value="查看详情">
 										</form>

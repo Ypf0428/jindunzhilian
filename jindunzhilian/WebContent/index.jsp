@@ -16,8 +16,6 @@
 <script src="js/banner.js"></script>
     <style type="text/css">
 
-
-
     </style>
 </head>
 <body>
