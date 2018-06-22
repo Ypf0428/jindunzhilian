@@ -18,8 +18,8 @@
 </head>
 <body>
 <%
-//String username = (String)session.getAttribute("username");
-String username="user02";
+String username = (String)session.getAttribute("username");
+
 %>
 	<div class="header">
 		<div class="container">
