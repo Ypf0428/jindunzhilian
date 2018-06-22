@@ -1,21 +1,15 @@
 package dao;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
-import org.apache.commons.dbutils.handlers.ArrayListHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import entity.Record;
-import entity.User;
 import utils.JinDunUtil;
 
 /**
@@ -45,10 +39,10 @@ public class RecordDao {
 	
 	/*获取当前页面中所有通行记录*/
 	public List<Record> getRecordCurrentPage(int currentPage,int pageSize,String startTime,String username){
-		Connection con = null;
+/*		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		/*创建QueryRunner对象查询*/
+		创建QueryRunner对象查询
 		String str = startTime.substring(0,7);
 		String str1 = "%"+str+"%";
 		List<Record> records = new ArrayList<Record>();
@@ -87,16 +81,23 @@ public class RecordDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
-		/*QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
-		Object[] obj = {str1,currentPage * pageSize,(currentPage - 1) * pageSize + 1};
+		}*/
+		
+		
+		//创建QueryRunner对象查询
+		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
+		String str = startTime.substring(0,7);
+		String str1 = "%"+str+"%";
+		List<Record> records = new ArrayList<Record>();
+		String sql = "select * from (select rownum r,t.* from (select s.* from (select * from Record where starttime like ? and LTID=(select LTID from userinformation where username=?)) s order by starttime asc ) t where rownum<= ? ) where r>= ?";
+		Object[] obj = {str1,username,currentPage * pageSize,(currentPage - 1) * pageSize + 1};
 		try {
-			records = runner.query(sql, obj, new BeanListHandler<Record>(Record.class)) ;
+			records = runner.query(sql,new BeanListHandler<Record>(Record.class),obj) ;
 			return records;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch bloc
 			e.printStackTrace();
-		}*/
+		}
 		return records;
 	}
 
@@ -160,22 +161,25 @@ public class RecordDao {
 	public List<Record> queryRecordByMonStartTime(String username,String plate,String Mouth){
 		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
 		List<Record> records = new ArrayList<Record>();
-		String sql = "select * from record where LTID=(select LTID from userinformation where username=?)and plate=?  and starttime like ?";
-		Object[] obj = {username,plate,Mouth};
+		String date = "%"+Mouth+"%";
+		String sql = "select * from record where LTID=(select LTID from userinformation where username=?) and plate=?  and starttime like ?";
+		Object[] obj = {username,plate,date};
 		try {
-			records = runner.query(sql, new BeanListHandler<Record>(Record.class),obj);
+			records = runner.query(sql,new BeanListHandler<Record>(Record.class),obj);
+			System.out.println(records);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return records;
 	}
+	
 	/**月份查询：按结算时间(arrivalTime)查询*/
 	public List<Record> queryRecordByMonArrivalTime(String username,String plate,String Mouth){
 		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
+		String date = "%"+Mouth+"%";
 		List<Record> records = new ArrayList<Record>();
 		String sql = "select * from record where LTID=(select LTID from userinformation where username=?)and plate=?  and arrivaltime like ?";
-		Object[] obj = {username,plate,Mouth};
+		Object[] obj = {username,plate,date};
 		try {
 			records = runner.query(sql, new BeanListHandler<Record>(Record.class),obj);
 		} catch (SQLException e) {

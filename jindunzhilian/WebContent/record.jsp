@@ -199,19 +199,19 @@
 						<ul>
 							<li>
 								<h3>按月份查询：</h3>
-								<form action="RecordServlet" method="post">
-								<select class="form-control">
+								<form action="RecordMonthServlet?username=<%=username %>" method="post">
+								<select name="selectway" class="form-control">
 									<option>请选择查询方式</option>
-									<option>消费时间</option>
-									<option>结算时间</option>
+									<option value="消费时间">消费时间</option>
+									<option value="结算时间">结算时间</option>
 								</select>
-								<select class="form-control">
+								<select name="plate" class="form-control">
 									<option>请选择查询车辆</option>
 									<option>全部</option>
-									<option>鲁FX7960</option>
+									<option>陕B12011</option>
 								</select>
-								<input type="submit" class="btn btn-danger" value="查询本月">
-								<input type="submit" class="btn btn-danger" value="查询上月">
+								<input type="submit" class="btn btn-danger" name="nowmonth" value="查询本月">
+								<input type="submit" class="btn btn-danger" name="lastmonth" value="查询上月">
 								</form>
 							</li>
 							<li>
