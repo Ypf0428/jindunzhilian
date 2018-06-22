@@ -46,11 +46,55 @@ public class RecordService {
 
 	/**按照结算时间查询*/
 	public List<Record> queryRecordByArrivalTime(String username,String plate,String startTimeScope,String endTimeScope){
-		return dao.queryRecordByArrivalTime(username, plate, startTimeScope, endTimeScope);
+		/*起始时间年份*/
+		List<Record> records = new ArrayList<Record>();
+		List<Record> record1 = new ArrayList<Record>();
+
+		records =  dao.queryRecordByPlateUsername(plate, username);
+		for (int i = 0; i < records.size(); i++) {
+			String arrivaltime = records.get(i).getStarttime();
+			/*遍历获取消费时间*/
+			int starttimeTotal = Integer.parseInt(arrivaltime.substring(0, 4)+arrivaltime.substring(5,7)+arrivaltime.substring(8,10));
+			int starttimescope = Integer.parseInt(startTimeScope.substring(0, 4)+startTimeScope.substring(5,7)+startTimeScope.substring(8,10));
+			int endtimescope = Integer.parseInt(endTimeScope.substring(0, 4)+endTimeScope.substring(5,7)+endTimeScope.substring(8,10));
+			
+			if (starttimescope <= starttimeTotal && starttimeTotal <= endtimescope) {
+				record1.add(records.get(i));
+			}
+		}
+		return record1;
 	}
 	
 	/**按照消费时间查询**/
 	public List<Record> queryRecordByStartTime(String username,String plate,String startTimeScope,String endTimeScope){
-		return dao.queryRecordByStartTime(username, plate, startTimeScope, endTimeScope);
+		/*起始时间年份*/
+		List<Record> records = new ArrayList<Record>();
+		List<Record> record1 = new ArrayList<Record>();
+ 		
+
+		records =  dao.queryRecordByPlateUsername(plate, username);
+		System.out.println(records);
+		for (int i = 0; i < records.size(); i++) {
+			String starttime = records.get(i).getStarttime();
+			/*遍历获取消费时间*/
+			int starttime1 = Integer.parseInt(starttime.substring(0, 4)); 
+			System.out.println(starttime1);
+			/*起始时间月份*/
+			int starttime2 = Integer.parseInt(starttime.substring(5,7));
+			System.out.println(starttime2);
+			/*起始时间天*/
+			int starttime3 = Integer.parseInt(starttime.substring(8,10));
+			System.out.println(starttime3);
+			
+			int starttimeTotal = Integer.parseInt(starttime.substring(0, 4)+starttime.substring(5,7)+starttime.substring(8,10));
+			int starttimescope = Integer.parseInt(startTimeScope.substring(0, 4)+startTimeScope.substring(5,7)+startTimeScope.substring(8,10));
+			int endtimescope = Integer.parseInt(endTimeScope.substring(0, 4)+endTimeScope.substring(5,7)+endTimeScope.substring(8,10));
+			
+			if (starttimescope <= starttimeTotal && starttimeTotal <= endtimescope) {
+				record1.add(records.get(i));
+			}
+	}
+		
+		return record1;
 	}
 }

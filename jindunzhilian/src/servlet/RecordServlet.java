@@ -38,13 +38,13 @@ public class RecordServlet extends HttpServlet {
 		
 		if (selectWay.equals("消费时间")) {
 			records = service.queryRecordByStartTime(username, plate, startTimeScope, endTimeScope);
-			page.setRecords(records);
-			request.setAttribute("pages", page);
-			request.getRequestDispatcher("record_details_1.jsp").forward(request, response);
-		}else {
+		}else if (selectWay.equals("结算时间")) {
+			records = service.queryRecordByArrivalTime(username, plate, startTimeScope, endTimeScope);
 			
 		}
-		
+		page.setRecords(records);
+		request.setAttribute("pages", page);
+		request.getRequestDispatcher("record_details_1.jsp").forward(request, response);
 	}
 
 }
