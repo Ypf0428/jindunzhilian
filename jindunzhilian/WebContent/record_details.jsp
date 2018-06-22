@@ -146,7 +146,7 @@
 													+ res.get(i).getStartstation() + "站入，" + res.get(i).getArrivaltime() 
 													+ res.get(i).getArrivalstation() + "站出" + "</td>");
 											out.print("<td style='width: 436px'>" + res.get(i).getMonetary() + "</td>");
-											out.print("<td style='width: 436px'>" + res.get(i).getArrivaltime() + "</td>");
+											out.print("<td style='width: 436px'>" + res.get(i).getStarttime() + "</td>");
 											out.print("</tr>");
 											totalCost += res.get(i).getMonetary();
 										}
@@ -178,17 +178,17 @@
 							//只要不是首页，则可以点击 首页 和 上一页 
 							if (currentPageIndex > 1) {
 						%> <!-- 超链接路径名与变量之间不能有空格 --> <a
-						href="QueryRecordDetailsServlet?currentPage=1&&arrivaltime=<%=res.get(0).getArrivaltime()%>&&username=<%=pages.getUsername()%>">首页</a>&nbsp;&nbsp;
+						href="QueryRecordDetailsServlet?currentPage=1&&starttime=<%=res.get(0).getStarttime()%>&&username=<%=pages.getUsername()%>">首页</a>&nbsp;&nbsp;
 						<a
-						href="QueryRecordDetailsServlet?currentPage=<%=currentPageIndex - 1%>&&arrivaltime=<%=res.get(0).getArrivaltime()%>&&username=<%=pages.getUsername()%>">上一页</a>&nbsp;&nbsp;
+						href="QueryRecordDetailsServlet?currentPage=<%=currentPageIndex - 1%>&&starttime=<%=res.get(0).getStarttime()%>&&username=<%=pages.getUsername()%>">上一页</a>&nbsp;&nbsp;
 						<%
 							}
 							//只要不是末页，则可以点击 末页 和 下一页 
 							if (currentPageIndex < totalPages) {
 						%> <!-- 超链接路径名与变量之间不能有空格 --> <a
-						href="QueryRecordDetailsServlet?currentPage=<%=currentPageIndex + 1%>&&arrivaltime=<%=res.get(0).getArrivaltime()%>&&username=<%=pages.getUsername()%>">下一页</a>&nbsp;&nbsp;
+						href="QueryRecordDetailsServlet?currentPage=<%=currentPageIndex + 1%>&&starttime=<%=res.get(0).getStarttime()%>&&username=<%=pages.getUsername()%>">下一页</a>&nbsp;&nbsp;
 						<a
-						href="QueryRecordDetailsServlet?currentPage=<%=totalPages%>&&arrivaltime=<%=res.get(0).getArrivaltime()%>&&username=<%=pages.getUsername()%>">末页</a>&nbsp;&nbsp;
+						href="QueryRecordDetailsServlet?currentPage=<%=totalPages%>&&starttime=<%=res.get(0).getStarttime()%>&&username=<%=pages.getUsername()%>">末页</a>&nbsp;&nbsp;
 						<%
 							}
 						%>

@@ -25,7 +25,7 @@ public class QueryRecordDetailsServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 //		/*获取record2.jsp中的消费时间*/
-		String arrivalTime = request.getParameter("arrivaltime");
+		String startTime = request.getParameter("starttime");
 //		
 		String currentPage = request.getParameter("currentPage");
 		String username = request.getParameter("username");
@@ -36,7 +36,7 @@ public class QueryRecordDetailsServlet extends HttpServlet {
 		int currentPageNo = Integer.parseInt(currentPage);
 		/*调用业务逻辑*/
 		RecordService service = new RecordService();
-		int totalCount = service.getTotalCount(arrivalTime,username);
+		int totalCount = service.getTotalCount(startTime,username);
 		Page page = new Page();
 		// 如果currentPage的值为null,说明是第一次进入此Servlet,故设为第 1 页
 		/*if (pageSize != null) {
@@ -57,7 +57,7 @@ public class QueryRecordDetailsServlet extends HttpServlet {
 		}
 		/*设置当前页的页码*/
 		page.setCurrentPage(currentPageNo);
-		List<Record> records = service.getRecordCurrentPage(page.getCurrentPage(),page.getPageSize(),arrivalTime,username);
+		List<Record> records = service.getRecordCurrentPage(page.getCurrentPage(),page.getPageSize(),startTime,username);
 		page.setRecords(records);
 		page.setUsername(username);
 		System.out.println(records.toString());

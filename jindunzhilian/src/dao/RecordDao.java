@@ -44,17 +44,17 @@ public class RecordDao {
 //	}
 	
 	/*获取当前页面中所有通行记录*/
-	public List<Record> getRecordCurrentPage(int currentPage,int pageSize,String arrivalTime,String username){
+	public List<Record> getRecordCurrentPage(int currentPage,int pageSize,String startTime,String username){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		/*创建QueryRunner对象查询*/
-		String str = arrivalTime.substring(0,7);
+		String str = startTime.substring(0,7);
 		String str1 = "%"+str+"%";
 		List<Record> records = new ArrayList<Record>();
 		try {
 		con = JinDunUtil.getDataSourceWithC3p0ByXML ().getConnection();
-			String sql = "select * from (select rownum r,t.* from (select s.* from (select * from Record where arrivaltime like ? and LTID=(select LTID from userinformation where username=?)) s order by arrivaltime asc ) t where rownum<= ? ) where r>= ?";
+			String sql = "select * from (select rownum r,t.* from (select s.* from (select * from Record where starttime like ? and LTID=(select LTID from userinformation where username=?)) s order by starttime asc ) t where rownum<= ? ) where r>= ?";
 			pstmt= con.prepareStatement(sql);
 			pstmt.setString(1, str1);
 			pstmt.setString(2, username);
@@ -105,12 +105,12 @@ public class RecordDao {
 
 	
 	/**获取数据总条数*/
-	public int getTotalCount(String arrivaltime,String username) {
+	public int getTotalCount(String starttime,String username) {
 		/*创建QueryRunner对象查询*/
 		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
-		String str = arrivaltime.substring(0,7);
+		String str = starttime.substring(0,7);
 		String str1 = "%"+str+"%";
-		String sql = "select count(1) count from (select * from Record where arrivaltime like ? and LTID=(select LTID from userinformation where username=?))";
+		String sql = "select count(1) count from (select * from Record where starttime like ? and LTID=(select LTID from userinformation where username=?))";
 		Object[] obj = {str1,username};
 		try {
 			Object result = runner.query(sql,obj, new ScalarHandler());
