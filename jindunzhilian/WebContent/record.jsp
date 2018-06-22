@@ -216,20 +216,20 @@
 							</li>
 							<li>
 								<h3>按时间查询：</h3>
-								<form action="RecordServlet" method="post">
-								<select class="form-control">
+								<form action="RecordServlet?username=<%=username %>" method="post">
+								<select class="form-control" name="selectway">
 									<option>请选择查询方式</option>
-									<option>消费时间</option>
-									<option>结算时间</option>
+									<option value="消费时间">消费时间</option>
+									<option value="结算时间">结算时间</option>
 								</select>
-								<select class="form-control">
+								<select class="form-control" name="plate">
 									<option>请选择查询车辆</option>
-									<option>全部</option>
-									<option>鲁FX7960</option>
+									<option value="全部">全部</option>
+									<option>陕A10000</option>
 								</select>
-								<input type="date" class="form-control">
+								<input type="date" class="form-control" name="starttimescope">
 								<label>至</label>
-								<input type="date" class="form-control">
+								<input type="date" class="form-control" name="endtimescope">
 								<input type="submit" value="开始查询" class="btn btn-danger">
 								</form>
 								

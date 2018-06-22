@@ -119,6 +119,28 @@ public class RecordDao {
 		}
 		return 0;
 	}
+	/**
+	 * @author Y1041
+	 * 
+	 * 按照用户名和车牌号查询
+	 * */
+	public List<Record> queryRecordByPlateUsername(String plate,String username) {
+		/*创建QueryRunner对象查询*/
+		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
+		List<Record> records = new ArrayList<Record>();
+		String sql = "select * from record where LTID=（select LTID from userinformation where username=?） and plate=?";
+		Object[] obj = {username,plate};
+		try {
+			records = runner.query(sql, new BeanListHandler<Record>(Record.class),obj);
+			return records;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 	
 	/**
 	 * @author Y1041
