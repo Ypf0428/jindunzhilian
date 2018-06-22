@@ -30,6 +30,8 @@ public class LoginServlet extends HttpServlet {
 		UserService us = new UserService();
 		boolean flag = us.isExistByusername(username);
 		if(flag) {
+			int LTID = us.findUserByusername(username).getLTID();
+			session.setAttribute("LTID", LTID);
 			session.setAttribute("username", username);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else {

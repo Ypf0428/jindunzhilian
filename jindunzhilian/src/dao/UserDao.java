@@ -77,8 +77,8 @@ public class UserDao {
 				while(rs.next()) {
 					String uname = rs.getString("username");
 					String password = rs.getString("password");
-					
-					user = new User(username,password);
+					int LTID = rs.getInt("LTID");
+					user = new User(username,password,LTID);
 				}
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block

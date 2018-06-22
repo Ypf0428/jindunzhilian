@@ -1,3 +1,5 @@
+<%@page import="entity.Record"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -149,75 +151,24 @@
 									<th>消费时间</th>
 								</tr>
 							</thead>
-							<tbody>									
-								<tr>
-									<td>
-										00126989
-									</td>
-									<td>
-										鲁FX7960
-									</td>
-									<td style="width: 436px">
-											2017-04-07-12.18.41 古现站入，2017-04-07-12.36.27 蓬莱站出 
-									</td>
-									<td>
-										9.5
-									</td>
-									<td>
-										2017-04-07 12:36:27
-									</td>
-								</tr>
-								<tr>
-									<td>
-										00126989
-									</td>
-									<td>
-										鲁FX7960
-									</td>
-									<td style="width: 436px">
-											2017-04-07-12.18.41 古现站入，2017-04-07-12.36.27 蓬莱站出 
-									</td>
-									<td>
-										9.5
-									</td>
-									<td>
-										2017-04-07 12:36:27
-									</td>
-								</tr>
-								<tr>
-									<td>
-										00126989
-									</td>
-									<td>
-										鲁FX7960
-									</td>
-									<td style="width: 436px">
-											2017-04-07-12.18.41 古现站入，2017-04-07-12.36.27 蓬莱站出 
-									</td>
-									<td>
-										9.5
-									</td>
-									<td>
-										2017-04-07 12:36:27
-									</td>
-								</tr>
-								<tr>
-									<td>
-										00126989
-									</td>
-									<td>
-										鲁FX7960
-									</td>
-									<td style="width: 436px">
-											2017-04-07-12.18.41 古现站入，2017-04-07-12.36.27 蓬莱站出 
-									</td>
-									<td>
-										9.5
-									</td>
-									<td>
-										2017-04-07 12:36:27
-									</td>
-								</tr>
+							<tbody>
+							<%
+								int sum = 0;
+								int LTID = (Integer)session.getAttribute("LTID");
+								List<Record> res = (List)request.getAttribute("record");
+								if (res != null) {
+									for (int i = 0; i < res.size(); i++) {
+										out.print("<tr>");
+										out.print("<td>" + LTID + "</td>");
+										out.print("<td>" + res.get(i).getPlate()+ "</td>");
+										out.print("<td style='width: 436px'>"+res.get(i).getStarttime()+res.get(i).getStartstation()+"站入,"+res.get(i).getArrivaltime()+res.get(i).getArrivalstation()+"站出</td>");
+										out.print("<td style='width: 436px'>"+res.get(i).getMonetary()+"</td>");
+										out.print("<td style='width: 436px'>"+res.get(i).getStarttime()+"</td>");
+										out.print("</tr>");
+										sum += res.get(i).getMonetary();
+									}
+								}
+							%>									
 								<tr>
 									<td colspan="5">
 										<div class="row">
@@ -225,7 +176,7 @@
 												<button class="btn btn-danger">导出文件</button>
 											</div>
 											<div class="col-xs-10 txt">
-												<p>合计消费金额：<span>￥3959</span>扣款金额：<span>￥508.25</span></p>
+												<p>合计消费金额：<span>￥<%=sum %></span>扣款金额：<span>￥508.25</span></p>
 											</div>
 										</div>
 										

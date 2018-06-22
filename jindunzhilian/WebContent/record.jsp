@@ -1,3 +1,5 @@
+<%@page import="entity.Record"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -147,39 +149,25 @@
 							<tbody>
 							<%
 								String username = (String)session.getAttribute("username");
-							%>									
-								<tr>
-									<td>
-										<%=username %>
-									</td>
-									<td>
-										00126988
-									</td>
-									<td>
-										鲁F216T7
-									</td>
-									<td>
-										<a href="record_check_2.jsp">9.5</a>
-									</td>
-									<td>
-										<a href="record_check_2.jsp">33.25</a>
-									</td>
-									<td>
-										<a href="record_check_2.jsp">109.25</a>
-									</td>
-									<td>
-										<a href="record_check_2.jsp">90.25</a>
-									</td>
-									<td>
-										<a href="record_check_2.jsp">33.25</a>
-									</td>
-									<td>
-										<button class="btn btn-xs btn btn-primary" id="set">设定</button>
-									</td>
-									<td>
-										<button class="btn btn-xs btn-danger" onClick="location.href='record_check.jsp'">查看</button>
-									</td>
-								</tr>
+								int LTID = (Integer)session.getAttribute("LTID");
+								List<Record> res = (List)request.getAttribute("record");
+								if (res != null) {
+									for (int i = 0; i < res.size(); i++) {
+										out.print("<tr>");
+										out.print("<td>" + username + "</td>");
+										out.print("<td>" + LTID + "</td>");
+										out.print("<td>" + res.get(i).getPlate()+ "</td>");
+										out.print("<td><a href='record_check_2.jsp'>9.5</a></td>");
+										out.print("<td><a href='record_check_2.jsp'>33.25</a></td>");
+										out.print("<td><a href='record_check_2.jsp'>"+res.get(i).getSum()+"</a></td>");
+										out.print("<td><a href='record_check_2.jsp'>90.25</a></td>");
+										out.print("<td><a href='record_check_2.jsp'>33.25</a></td>");
+										out.print("<td><button class='btn btn-xs btn btn-primary' id='set'>设定</button></td>");
+										out.print("<td><a href='RecordCheckServlet?plate="+res.get(i).getPlate()+"'>查询</a></td>");
+										out.print("</tr>");
+									}
+								}
+							%>																
 							</tbody>
 						</table>
 						<div class="state">

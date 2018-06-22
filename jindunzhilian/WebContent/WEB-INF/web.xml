@@ -59,4 +59,24 @@
     <servlet-name>RecordMonthServlet</servlet-name>
     <url-pattern>/RecordMonthServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RecordServlet2</display-name>
+    <servlet-name>RecordServlet2</servlet-name>
+    <servlet-class>servlet.RecordServlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecordServlet2</servlet-name>
+    <url-pattern>/RecordServlet2</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RecordCheckServlet</display-name>
+    <servlet-name>RecordCheckServlet</servlet-name>
+    <servlet-class>servlet.RecordCheckServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecordCheckServlet</servlet-name>
+    <url-pattern>/RecordCheckServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
