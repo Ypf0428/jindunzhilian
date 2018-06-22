@@ -136,4 +136,36 @@ public class RecordDao {
 		}
 		return record;
 	}
+	
+	/**
+	 * @author Y1041
+	 * */
+	/**月份查询：按消费时间(startTime)查询*/
+	public List<Record> queryRecordByMonStartTime(String username,String plate,String Mouth){
+		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
+		List<Record> records = new ArrayList<Record>();
+		String sql = "select * from record where LTID=(select LTID from userinformation where username=?)and plate=?  and starttime like ?";
+		Object[] obj = {username,plate,Mouth};
+		try {
+			records = runner.query(sql, new BeanListHandler<Record>(Record.class),obj);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return records;
+	}
+	/**月份查询：按结算时间(arrivalTime)查询*/
+	public List<Record> queryRecordByMonArrivalTime(String username,String plate,String Mouth){
+		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
+		List<Record> records = new ArrayList<Record>();
+		String sql = "select * from record where LTID=(select LTID from userinformation where username=?)and plate=?  and arrivaltime like ?";
+		Object[] obj = {username,plate,Mouth};
+		try {
+			records = runner.query(sql, new BeanListHandler<Record>(Record.class),obj);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return records;
+	}
 }	

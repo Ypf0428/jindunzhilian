@@ -1,9 +1,15 @@
 package service;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import dao.RecordDao;
 import entity.Record;
+import utils.JinDunUtil;
 
 /**
  * @author Y1041
@@ -27,5 +33,14 @@ public class RecordService {
 	/*获取当前页面中所有通行记录*/
 	public List<Record> getRecordCurrentPage(int currentPage,int pageSize,String startTime,String username){
 		return dao.getRecordCurrentPage(currentPage, pageSize, startTime,username);
+	}
+	
+	/**月份查询：按消费时间(startTime)查询*/
+	public List<Record> queryRecordByMonStartTime(String username,String plate,String Mouth){
+		return dao.queryRecordByMonStartTime(username, plate, Mouth);
+	}
+	/**月份查询：按结算时间(arrivalTime)查询*/
+	public List<Record> queryRecordByMonArrivalTime(String username,String plate,String Mouth){
+		return dao.queryRecordByMonArrivalTime(username, plate, Mouth);
 	}
 }

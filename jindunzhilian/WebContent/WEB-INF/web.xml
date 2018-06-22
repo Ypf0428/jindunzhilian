@@ -49,4 +49,14 @@
     <servlet-name>RecordServlet</servlet-name>
     <url-pattern>/RecordServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RecordMonthServlet</display-name>
+    <servlet-name>RecordMonthServlet</servlet-name>
+    <servlet-class>servlet.RecordMonthServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecordMonthServlet</servlet-name>
+    <url-pattern>/RecordMonthServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
