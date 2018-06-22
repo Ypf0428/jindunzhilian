@@ -43,4 +43,14 @@ public class RecordService {
 	public List<Record> queryRecordByMonArrivalTime(String username,String plate,String Mouth){
 		return dao.queryRecordByMonArrivalTime(username, plate, Mouth);
 	}
+
+	/**按照结算时间查询*/
+	public List<Record> queryRecordByArrivalTime(String username,String plate,String startTimeScope,String endTimeScope){
+		return dao.queryRecordByArrivalTime(username, plate, startTimeScope, endTimeScope);
+	}
+	
+	/**按照消费时间查询**/
+	public List<Record> queryRecordByStartTime(String username,String plate,String startTimeScope,String endTimeScope){
+		return dao.queryRecordByStartTime(username, plate, startTimeScope, endTimeScope);
+	}
 }
