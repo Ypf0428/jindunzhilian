@@ -122,12 +122,12 @@ public class RecordDao {
 	/**
 	 * @author Y1041
 	 * */
-	/**按消费时间查询*/
-	public List<Record> queryRecordByArrivalTime(String username,String plate,String startTimeScope,String endTimeScope){
+	/**按结算时间查询*/
+	public List<Record> queryRecordByStartTime(String username,String plate,String startTimeScope,String endTimeScope){
 		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
 		List<Record> record = new ArrayList<Record>();
-		String sql = "select * from record where ";
-		Object[] obj = {};
+		String sql = "select * from record where plate=? and starttime=(select starttime from record where (starttime between to_date('"+"?"+"','yyyy-mm-dd') and to_date('"+"?"+"','yyyy-mm-dd')) and username=?)";
+		Object[] obj = {plate,startTimeScope,endTimeScope,username};
 		try {
 			record = runner.query(sql, new BeanListHandler<Record>(Record.class),obj);
 		} catch (SQLException e) {
@@ -135,5 +135,22 @@ public class RecordDao {
 			e.printStackTrace();
 		}
 		return record;
+	}
+	
+	/**
+	 * 按照消费时间查询
+	 * */
+	public List<Record> queryRecordByArrivalTime(String username,String plate,String startTimeScope,String endTimeScope){
+		List<Record> records = new ArrayList<Record>();
+		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
+		String sql = "select * from record where plate=? and arrivaltime=(select arrivaltime from record where (starttime between to_date('"+"?"+"','yyyy-mm-dd') and to_date('"+"?"+"','yyyy-mm-dd')) and username=?)";
+		Object[] obj = {plate,startTimeScope,endTimeScope,username};
+		try {
+			records = runner.query(sql, new BeanListHandler<Record>(Record.class),obj);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return records;
 	}
 }	

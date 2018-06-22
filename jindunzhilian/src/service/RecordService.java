@@ -28,4 +28,14 @@ public class RecordService {
 	public List<Record> getRecordCurrentPage(int currentPage,int pageSize,String startTime,String username){
 		return dao.getRecordCurrentPage(currentPage, pageSize, startTime,username);
 	}
+	
+	/**按照结算时间查询*/
+	public List<Record> queryRecordByArrivalTime(String username,String plate,String startTimeScope,String endTimeScope){
+		return dao.queryRecordByArrivalTime(username, plate, startTimeScope, endTimeScope);
+	}
+	
+	/**按照消费时间查询**/
+	public List<Record> queryRecordByStartTime(String username,String plate,String startTimeScope,String endTimeScope){
+		return dao.queryRecordByStartTime(username, plate, startTimeScope, endTimeScope);
+	}
 }
