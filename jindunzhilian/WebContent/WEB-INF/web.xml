@@ -39,4 +39,14 @@
     <servlet-name>QueryRecordDetailsServlet</servlet-name>
     <url-pattern>/QueryRecordDetailsServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RecordServlet</display-name>
+    <servlet-name>RecordServlet</servlet-name>
+    <servlet-class>servlet.RecordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RecordServlet</servlet-name>
+    <url-pattern>/RecordServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

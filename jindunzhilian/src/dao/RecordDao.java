@@ -89,9 +89,6 @@ public class RecordDao {
 			}
 		}
 		/*QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
-		
-		
-		
 		Object[] obj = {str1,currentPage * pageSize,(currentPage - 1) * pageSize + 1};
 		try {
 			records = runner.query(sql, obj, new BeanListHandler<Record>(Record.class)) ;
@@ -113,7 +110,7 @@ public class RecordDao {
 		String sql = "select count(1) count from (select * from Record where starttime like ? and LTID=(select LTID from userinformation where username=?))";
 		Object[] obj = {str1,username};
 		try {
-			Object result = runner.query(sql,obj, new ScalarHandler());
+			Object result = runner.query(sql, new ScalarHandler(),obj);
 			return  (Integer.parseInt(result.toString()));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -122,4 +119,21 @@ public class RecordDao {
 		return 0;
 	}
 	
+	/**
+	 * @author Y1041
+	 * */
+	/**按消费时间查询*/
+	public List<Record> queryRecordByArrivalTime(String username,String plate,String startTimeScope,String endTimeScope){
+		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
+		List<Record> record = new ArrayList<Record>();
+		String sql = "select * from record where ";
+		Object[] obj = {};
+		try {
+			record = runner.query(sql, new BeanListHandler<Record>(Record.class),obj);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return record;
+	}
 }	

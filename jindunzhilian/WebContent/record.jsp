@@ -199,6 +199,7 @@
 						<ul>
 							<li>
 								<h3>按月份查询：</h3>
+								<form action="RecordServlet" method="post">
 								<select class="form-control">
 									<option>请选择查询方式</option>
 									<option>消费时间</option>
@@ -209,11 +210,13 @@
 									<option>全部</option>
 									<option>鲁FX7960</option>
 								</select>
-								<button class="btn btn-danger" onClick="location.href='record_check.jsp'">查询本月</button>
-							    <button class="btn btn-danger" onClick="location.href='record_check.jsp'">查询上月</button>
+								<input type="submit" class="btn btn-danger" value="查询本月">
+								<input type="submit" class="btn btn-danger" value="查询上月">
+								</form>
 							</li>
 							<li>
 								<h3>按时间查询：</h3>
+								<form action="RecordServlet" method="post">
 								<select class="form-control">
 									<option>请选择查询方式</option>
 									<option>消费时间</option>
@@ -227,7 +230,9 @@
 								<input type="date" class="form-control">
 								<label>至</label>
 								<input type="date" class="form-control">
-								<button class="btn btn-danger" onClick="location.href='record_check.jsp'">开始查询</button>
+								<input type="submit" value="开始查询" class="btn btn-danger">
+								</form>
+								
 							</li>
 							
 						</ul>
