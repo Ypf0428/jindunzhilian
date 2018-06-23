@@ -44,7 +44,7 @@ public class EnRollServlet extends HttpServlet {
 				//正确登陆
 				boolean result = service.addUser(user);
 					if(result&&checkcode.equals(piccode)) {
-						request.getRequestDispatcher("index.jsp").forward(request, response);
+						request.getRequestDispatcher("logoin.jsp").forward(request, response);
 					}else {
 						request.setAttribute("a", "用户已存在");
 						response.sendRedirect("enroll.jsp");

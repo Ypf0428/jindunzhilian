@@ -113,7 +113,7 @@
 			<div class="col-xs-3">
 				<div class="serve_lf">
 					<ul>
-						<li><a href="record.jsp" class="ac_s">用户信息</a></li>
+						<li><a href="RecordServlet2?username=<%=username %>" class="ac_s">用户信息</a></li>
 						<li><a href="record_2.jsp" >账单查询</a></li>
 						<li><a href="record_3.jsp">修改密码</a></li>
 					</ul>

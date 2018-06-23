@@ -132,7 +132,7 @@
 				<div class="serve_lf">
 					<ul>
 						<li>
-							<a href="record.jsp" class="ac_s">用户信息</a>
+							<a href="RecordServlet2?username=<%=username %>" class="ac_s">用户信息</a>
 						</li>
 						<li>
 							<a href="record_2.jsp">账单查询</a>
