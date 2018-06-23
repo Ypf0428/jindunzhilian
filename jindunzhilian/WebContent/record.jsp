@@ -84,7 +84,7 @@ String username = (String)session.getAttribute("username");
 						</a>
 					</li>
 					<li  class="ac">
-						<a href="record.jsp">
+						<a href="RecordServlet2?username=<%=username%>">
 							<i class="icon iconfont">&#xe66c;</i>
 							通行记录
 						</a>

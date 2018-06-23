@@ -22,6 +22,9 @@
     </style>
 </head>
 <body>
+	<%
+					String username = (String)session.getAttribute("username");
+				%>
 <div class="header">
 		<div class="container">
 			<div class="row header_box">
@@ -79,7 +82,7 @@
 						</a>
 					</li>
 					<li  class="ac">
-						<a href="record.jsp">
+						<a href="RecordServlet2?username=<%=username%>">
 							<i class="icon iconfont">&#xe66c;</i>
 							通行记录
 						</a>
@@ -87,14 +90,20 @@
 					<div class="clear"></div>
 				</ul>
 				<div class="logoin pull-right">
-					<a href="logoin.jsp" class="ac">
-						<i class="icon iconfont">&#xe60c;</i>
-						登录
-					</a>
-					<a href="enroll.jsp" >
-						<i class="icon iconfont" >&#xe697;</i>
-						注册
-					</a>
+					<%
+						if(username==null){
+							out.print("<a href='logoin.jsp' class='ac'>");
+							out.print("<i class='icon iconfont'>&#xe60c;</i>登陆</a>");
+							out.print("<a href='enroll.jsp'>");
+							out.print("<i class='icon iconfont' >&#xe697;</i>注册</a>");
+						}else{
+							out.print("<a href='index.jsp' class='ac'>");
+							out.print("<i class='icon iconfont'>&#xe60c;</i>");
+							out.print(username+"</a>");
+							out.print("<a href='logoin.jsp'");
+							out.print("<i class='icon iconfont' >&#xe697;</i>注销</a>");
+						}
+						%>	
 				</div>
 			</div>		
 		</div>
@@ -125,7 +134,7 @@
 				<div class="serve_lf">
 					<ul>
 						<li>
-							<a href="record.jsp" class="ac_s">用户信息</a>
+							<a href="RecordServlet2?username=<%=username %>" class="ac_s">用户信息</a>
 						</li>
 						<li>
 							<a href="record_2.jsp" >账单查询</a>
@@ -144,10 +153,10 @@
 						<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
-									<th>鲁通卡号</th>
-									<th>车牌号码</th>
-									<th>交易摘要</th>
-									<th>消费金额</th>
+									<th width="4%">鲁通卡号</th>
+									<th width="11%">车牌号码</th>
+									<th width="50%">交易摘要</th>
+									<th width="10%">消费金额</th>
 									<th>消费时间</th>
 								</tr>
 							</thead>

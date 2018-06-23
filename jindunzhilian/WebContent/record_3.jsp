@@ -19,6 +19,9 @@
     </style>
 </head>
 <body>
+	<%
+					String username = (String)session.getAttribute("username");
+				%>
 <%
 String error = (String)request.getAttribute("error");
 if(error!=null){
@@ -86,7 +89,7 @@ alert("<%=error%>");
 						</a>
 					</li>
 					<li  class="ac">
-						<a href="record.jsp">
+						<a href="RecordServlet2?username=<%=username%>">
 							<i class="icon iconfont">&#xe66c;</i>
 							通行记录
 						</a>
@@ -94,9 +97,6 @@ alert("<%=error%>");
 					<div class="clear"></div>
 				</ul>
 				<div class="logoin pull-right">
-					<%
-					String username = (String)session.getAttribute("username");
-				%>
 				<%
 						if(username==null){
 							out.print("<a href='logoin.jsp' class='ac'>");

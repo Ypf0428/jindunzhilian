@@ -63,7 +63,7 @@ String username = (String)session.getAttribute("username");
 					<li><a href="contact.jsp"> <i class="icon iconfont">&#xe605;</i>
 							联系我们
 					</a></li>
-					<li class="ac"><a href="record.jsp"> <i
+					<li class="ac"><a href="RecordServlet2?username=<%=username%>"> <i
 							class="icon iconfont">&#xe66c;</i> 通行记录
 					</a></li>
 					<div class="clear"></div>
