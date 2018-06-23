@@ -124,44 +124,44 @@ String username = (String)session.getAttribute("username");
 							class="table table-striped table-bordered table-hover">
 							<tbody>
 								<tr class="text-center">
-									<td>2017年07月通行账单</td>
+									<td>2018年05月通行账单</td>
 									<td>
-										<form action="QueryRecordDetailsServlet?starttime=2017/07/。。。&&username=<%=username%>" method="post">
+										<form action="QueryRecordDetailsServlet?starttime=2018/05/&&username=<%=username%>" method="post">
 											<input type="submit" class="btn btn-xs btn btn-danger"
 												value="查看详情">
 										</form>
 									</td>
-									<td>2017年08月12日生成</td>
+									<td>2018年06月01日生成</td>
 								</tr>
 								<tr class="text-center">
-									<td>2017年08月通行账单</td>
+									<td>2017年04月通行账单</td>
 									<td>
-										<form action="QueryRecordDetailsServlet?starttime=2017/08/。。。&&username=<%=username%>" method="post">
+										<form action="QueryRecordDetailsServlet?starttime=2018/04/&&username=<%=username%>" method="post">
 											<input type="submit" class="btn btn-xs btn btn-danger"
 												value="查看详情">
 										</form>
 									</td>
-									<td>2017年09月12日生成</td>
+									<td>2018年05月01日生成</td>
 								</tr>
 								<tr class="text-center">
-									<td>2017年09月通行账单</td>
+									<td>2018年03月通行账单</td>
 									<td>
-										<form action="QueryRecordDetailsServlet?starttime=2017/09/。。。&&username=<%=username %>" method="post">
+										<form action="QueryRecordDetailsServlet?starttime=2018/03/&&username=<%=username %>" method="post">
 											<input type="submit" class="btn btn-xs btn btn-danger"
 												value="查看详情">
 										</form>
 									</td>
-									<td>2017年10月12日生成</td>
+									<td>2018年04月01日生成</td>
 								</tr>
 								<tr class="text-center">
-									<td>2017年10月通行账单</td>
+									<td>2018年02月通行账单</td>
 									<td>
-										<form action="QueryRecordDetailsServlet?starttime=2017/10/。。。&&username=<%=username %>" method="post">
+										<form action="QueryRecordDetailsServlet?starttime=2018/02/&&username=<%=username %>" method="post">
 											<input type="submit" class="btn btn-xs btn btn-danger"
 												value="查看详情">
 										</form>
 									</td>
-									<td>2017年11月12日生成</td>
+									<td>2018年03月01日生成</td>
 								</tr>
 							</tbody>
 						</table>
