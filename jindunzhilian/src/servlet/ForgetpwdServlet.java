@@ -28,8 +28,8 @@ public class ForgetpwdServlet extends HttpServlet {
 		User user = service.findUserByusername(username);
 		if(user!=null){
 			if(user.getLTID()==LTID) {
-				        request.setAttribute("error", user.getPassword());
-						request.getRequestDispatcher("forgetpwd.jsp").forward(request, response);
+				        request.setAttribute("error", "您的密码是："+user.getPassword());
+						request.getRequestDispatcher("logoin.jsp").forward(request, response);
 					}else {
 						request.setAttribute("error", "卡号错误，请重新输入！");
 						request.getRequestDispatcher("forgetpwd.jsp").forward(request, response);
