@@ -23,6 +23,10 @@
 </head>
 
 <body>
+<%
+String username = (String)session.getAttribute("username");
+
+%>
 	<div class="header">
 		<div class="container">
 			<div class="row header_box">
@@ -116,7 +120,7 @@
 				<div class="serve_lf">
 					<ul>
 						<li>
-							<a href="record.jsp" class="ac_s">用户信息</a>
+							<a href="RecordServlet2?username=<%=username %>" class="ac_s">用户信息</a>
 						</li>
 						<li>
 							<a href="record_2.jsp">账单查询</a>
@@ -148,7 +152,7 @@
 							</thead>
 							<tbody>
 							<%
-								String username = (String)session.getAttribute("username");
+								
 								int LTID = (Integer)session.getAttribute("LTID");
 								List<Record> res = (List)request.getAttribute("record");
 								if (res != null) {
