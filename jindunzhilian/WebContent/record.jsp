@@ -195,8 +195,10 @@
 								</select>
 								<select name="plate" class="form-control">
 									<option>请选择查询车辆</option>
-									<option>全部</option>
-									<option>陕B12011</option>
+									<%for(int i = 0; i < res.size();i++){
+										out.print("<option>"+res.get(i).getPlate()+"</option>");
+									}
+									%>
 								</select>
 								<input type="submit" class="btn btn-danger" name="nowmonth" value="查询本月">
 								<input type="submit" class="btn btn-danger" name="lastmonth" value="查询上月">
@@ -212,8 +214,10 @@
 								</select>
 								<select class="form-control" name="plate">
 									<option>请选择查询车辆</option>
-									<option value="全部">全部</option>
-									<option>陕A10000</option>
+									<%for(int i = 0; i < res.size();i++){
+										out.print("<option>"+res.get(i).getPlate()+"</option>");
+									}
+									%>
 								</select>
 								<input type="date" class="form-control" name="starttimescope">
 								<label>至</label>
