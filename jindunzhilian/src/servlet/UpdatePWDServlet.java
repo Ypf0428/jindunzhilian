@@ -29,8 +29,8 @@ public class UpdatePWDServlet extends HttpServlet {
 				        User user1 = new User(username,password1);
 				        boolean flag = service.updateUser(user1, username);
 				        if(flag == true){
-				        request.setAttribute("error", "修改成功！");
-						request.getRequestDispatcher("record_3.jsp").forward(request, response);
+				        request.setAttribute("error", "修改成功！请重新登录！");
+						request.getRequestDispatcher("logoin.jsp").forward(request, response);
 				        }else{
 				        	request.setAttribute("error", "修改失败！");
 							request.getRequestDispatcher("record_3.jsp").forward(request, response);
