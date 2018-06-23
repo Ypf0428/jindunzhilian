@@ -1,11 +1,14 @@
 package servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import service.UserService;
 import dao.UserDao;
 import entity.User;
 
@@ -20,19 +23,21 @@ public class ForgetpwdServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		
 		String username = request.getParameter("uname");
-		String password = request.getParameter("pwd");
-		String repassword = request.getParameter("repwd");
-		
-		//无法更新，null
-		//jsp里的input标签里没name属性
-		User user = new User(username,repassword);
-//		user.setUsername(username);
-//		user.setPassword(repassword);
-		
-		UserDao userdao = new UserDao();
-		userdao.updateUser(user, username);
-		
-		request.getRequestDispatcher("logoin.jsp").forward(request, response);
+		int LTID = Integer.parseInt(request.getParameter("LTID"));
+		UserService service = new UserService();
+		User user = service.findUserByusername(username);
+		if(user!=null){
+			if(user.getLTID()==LTID) {
+				        request.setAttribute("error", user.getPassword());
+						request.getRequestDispatcher("forgetpwd.jsp").forward(request, response);
+					}else {
+						request.setAttribute("error", "卡号错误，请重新输入！");
+						request.getRequestDispatcher("forgetpwd.jsp").forward(request, response);
+					}
+			}else{
+				request.setAttribute("error", "用户名错误或用户不存在，请重新输入！");
+				request.getRequestDispatcher("forgetpwd.jsp").forward(request, response);
+			}
 	}
 
 }

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,8 +17,25 @@
 <script src="js/jquery-1.9.1.min.js"></script>
 <script src="js/banner.js"></script>
 <link href="css/animate.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+		function reloadCode(){
+			var time = new Date().getTime();
+			document.getElementById("imagecode").src="<%=path%>/ImageServlet?d="+time;
+		}
+	</script>
 </head>
 <body>
+<%
+String error = (String)request.getAttribute("a");
+if(error!=null){
+%>
+<script type="text/javascript" language="javascript">
+alert("<%=error%>");
+</script>
+<%
+}
+%>
 <div class="header">
 		<div class="container">
 			<div class="row header_box">
@@ -46,27 +67,31 @@
 		</div>
 		
 	</div>
-
-	<!-------登陆------------->
+	<!-------注册/登陆------------->
 	<div class="banner_box">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-4 pull-right">
 					<div class="logo_in">
+					<form action="EnRollServlet" method="post">
 						<h2>立即注册</h2>
 						<ul>
 							<li>
-								<input type="text" class="form-control" placeholder="设置您的账号（邮箱/手机号/用户名）"/>
+								<input type="text" class="form-control" name="userName" placeholder="设置您的账号（邮箱/手机号/用户名）" required/>
 							</li>
 							<li>
-								<input type="password" class="form-control " placeholder="设置您的账号密码" />
+								<input type="text" class="form-control" name="LTID" placeholder="设置您的鲁通卡号"  required/>
 							</li>
 							<li>
-								<input type="password" class="form-control " placeholder="确认账号密码" />
+								<input type="password" class="form-control" name="passWord" placeholder="设置您的账号密码" />
+							</li>
+							<li>
+								<input type="password" class="form-control " name="passWord2" placeholder="确认账号密码" />
 							</li>
 							<li class="verify">
-								<input type="text" class="form-control input-text-style-1 " placeholder="请输入右侧验证码" />
-								<img src="images/xx.png" />
+								<input type="text" name="checkcode" placeholder="请输入右侧验证码" />
+    									<img alt="验证码"  id="imagecode" src="<%=path%>/ImageServlet"/>
+    									<a href="javascript: reloadCode();">看不清楚</a><br>
 								<div class="clear"></div>
 							</li>
 							<li>
@@ -78,19 +103,15 @@
 							</li>
 							<li>
 								<button class="btn btn-danger">立即注册</button>
+								<!--  <input class="btn btn-danger" type="submit" value="立即注册">-->
 							</li>
 						</ul>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
 <!---------footer-------------->
 <div class="footer" style="margin-top: 0px;">
 	<div class="container box">

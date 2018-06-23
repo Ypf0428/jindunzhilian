@@ -15,6 +15,16 @@
 <link href="css/animate.min.css" rel="stylesheet" />
 </head>
 <body>
+<%
+String error = (String)request.getAttribute("error");
+if(error!=null){
+%>
+<script type="text/javascript" language="javascript">
+alert("<%=error%>");
+</script>
+<%
+}
+%>
 <div class="header">
 		<div class="container">
 			<div class="row header_box">
@@ -60,22 +70,15 @@
 								<input type="text"  name="uname" class="form-control " placeholder="请输入你的账号" />
 							</li>
 							<li>
-								<input type="password" id="pwd"  name="pwd" class="form-control " placeholder="请输入新密码" />
+								<input type="text" id="LTID"  name="LTID" class="form-control " placeholder="请输入你的卡号" />
 							</li>
-							<li>
-								<input type="repassword" id="repwd" name="repwd" class="form-control " placeholder="请确认新密码" />
-							</li>
-							<!-- 
-							手机验证码
-							图片验证码
-							 -->
 							<li>
 								<div class="pull-right pass">
 								</div>
 								<div class="clear"></div>
 							</li>
 							<li>
-								<input class="btn btn-danger" type="submit" value="重新登录"> 
+								<input class="btn btn-danger" type="submit" value="找回密码"> 
 							</li>
 						</ul>
 					 </form>	

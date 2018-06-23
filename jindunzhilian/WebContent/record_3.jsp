@@ -19,6 +19,16 @@
     </style>
 </head>
 <body>
+<%
+String error = (String)request.getAttribute("error");
+if(error!=null){
+%>
+<script type="text/javascript" language="javascript">
+alert("<%=error%>");
+</script>
+<%
+}
+%>
 <div class="header">
 		<div class="container">
 			<div class="row header_box">
@@ -146,18 +156,18 @@
 				<div class="record_ron">
 					<h3>更改用户密码</h3>
 					
-					<form class="form-horizontal">
+					<form class="form-horizontal" action="UpdatePWDServlet?username=<%=username %>" method="post" onsubmit="return compare()">
 					  
 					  <div class="form-group">
 						<label for="inputPassword_1" class="col-sm-2 control-label">输入旧密码：</label>
 						<div class="col-sm-10">
-						  <input type="password" class="form-control" id="inputPassword_1" >
+						  <input type="password" class="form-control" name="inputPassword_1" id="inputPassword_1" >
 						</div>
 					  </div>
 					  <div class="form-group">
 						<label for="inputPassword_2" class="col-sm-2 control-label">输入新密码：</label>
 						<div class="col-sm-10">
-						  <input type="password" class="form-control" id="inputPassword_2" >
+						  <input type="password" class="form-control" name="inputPassword_2" id="inputPassword_2" >
 						</div>
 					  </div>
 					  <div class="form-group">
@@ -168,7 +178,7 @@
 					  </div>
 					  <div class="form-group">
 						<div class="col-sm-10 text-center">
-							<button class="btn btn-danger">确认修改</button>
+							<input class="btn btn-danger" type="submit" value="确认修改"> 
 						</div>
 					  </div>
 					</form>
@@ -226,5 +236,13 @@
 		$(".play").mouseover(function(){
 			$(".play_box").addClass("fadeInUp");
 		});
+		function compare(){
+			var pwd = document.getElementById("inputPassword_2").value;
+			var repwd = document.getElementById("inputPassword_3").value;
+			if(pwd!=repwd){
+				alert("两次密码输入不一致\n 请重新输入");
+				return false;
+			}
+		}
 	</script>
 </html>
