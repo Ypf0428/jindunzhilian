@@ -138,7 +138,7 @@
 											out.print("<td style='width: 436px'>" + res.get(i).getLTID() + "</td>");
 											out.print("<td style='width: 436px'>" + res.get(i).getPlate() + "</td>");
 											out.print("<td style='width: 436px'>" + res.get(i).getStarttime() 
-													+ res.get(i).getStartstation() + "站入，" + res.get(i).getArrivaltime() 
+													+ res.get(i).getStartstation() + "站入," + res.get(i).getArrivaltime() 
 													+ res.get(i).getArrivalstation() + "站出" + "</td>");
 											out.print("<td style='width: 436px'>" + res.get(i).getMonetary() + "</td>");
 											out.print("<td style='width: 436px'>" + res.get(i).getStarttime() + "</td>");
