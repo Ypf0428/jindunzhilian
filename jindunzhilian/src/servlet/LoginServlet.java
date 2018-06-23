@@ -28,16 +28,18 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		UserService us = new UserService();
-		boolean flag = us.isExistByusername(username);
-		if(flag) {
-			int LTID = us.findUserByusername(username).getLTID();
-			session.setAttribute("LTID", LTID);
-			session.setAttribute("username", username);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}else {
-			request.setAttribute("Failure", "用户不存在，请重新登录");
-			request.getRequestDispatcher("logoin.jsp").forward(request, response);
-		}		
+		User user = us.findUserByusername(username);
+		if(user!=null){
+			if(user.getPassword().equals(password)) {
+				        session.setAttribute("LTID", user.getLTID());
+				        session.setAttribute("username", username);
+						request.getRequestDispatcher("index.jsp").forward(request, response);
+					}else {
+						
+						request.setAttribute("error", "用户名或密码错误，请重新输入！");
+						request.getRequestDispatcher("logoin.jsp").forward(request, response);
+					}
+			}
 	}
 
 }

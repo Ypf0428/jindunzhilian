@@ -21,46 +21,6 @@ public class UserDao {
 		  return cpds ; 
 		 }
 	 
-	 public List<User> findUser() {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		List<User> users = new ArrayList<User>();
-		
-		try {
-			conn = getDataSourceWithC3p0ByXML ().getConnection();
-			String sql = "select * from userinformation";
-			pstmt= conn.prepareStatement(sql);
-			rs= pstmt.executeQuery();
-			while(rs.next()) {
-				String username = rs.getString("username");
-				String password = rs.getString("password");
-				User user = new User(username,password);
-				users.add(user);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				if(rs != null) {
-					rs.close();
-				}
-				if(pstmt != null) {
-					pstmt.close();
-				}
-				if(conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		 return users;
-	 }
 	
 	public User findUserByusername(String username) {
 		Connection conn = null;

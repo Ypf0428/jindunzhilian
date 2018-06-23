@@ -79,4 +79,34 @@
     <servlet-name>RecordCheckServlet</servlet-name>
     <url-pattern>/RecordCheckServlet</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>EnRollServlet</display-name>
+    <servlet-name>EnRollServlet</servlet-name>
+    <servlet-class>servlet.EnRollServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EnRollServlet</servlet-name>
+    <url-pattern>/EnRollServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ImageServlet</display-name>
+    <servlet-name>ImageServlet</servlet-name>
+    <servlet-class>servlet.ImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ImageServlet</servlet-name>
+    <url-pattern>/ImageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdatePWDServlet</display-name>
+    <servlet-name>UpdatePWDServlet</servlet-name>
+    <servlet-class>servlet.UpdatePWDServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdatePWDServlet</servlet-name>
+    <url-pattern>/UpdatePWDServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
