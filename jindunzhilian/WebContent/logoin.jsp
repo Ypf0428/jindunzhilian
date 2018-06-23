@@ -16,7 +16,7 @@
 </head>
 <body>
 <%
-String Failure = (String)request.getAttribute("Failure");
+String Failure = (String)request.getAttribute("error");
 if(Failure != null){
 	%>
 	<script type="text/javascript" language="javascript">
