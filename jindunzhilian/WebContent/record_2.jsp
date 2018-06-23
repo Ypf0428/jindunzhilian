@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,7 +19,62 @@
 </head>
 <body>
 <%
+String Month;
+String Month1;
+String Month2;
+String Month3;
+String Month4;
+
 String username = (String)session.getAttribute("username");
+Calendar c= Calendar.getInstance();
+String year = String.valueOf(c.get(Calendar.YEAR));
+String month = String.valueOf(c.get(Calendar.MONTH));
+//当前月
+int monthInt = Integer.parseInt(month);
+//前一月
+int monthInt1 = Integer.parseInt(month);
+//前二月
+int monthInt2 = Integer.parseInt(month)-1;
+//前三月
+int monthInt3 = Integer.parseInt(month)-2;
+//前四月
+int monthInt4 = Integer.parseInt(month)-3;
+//判断月份
+		if (monthInt < 10) {
+			Month="年0"+monthInt +"月";
+		}else {
+			Month="年"+monthInt +"月";
+		}
+//判断月份
+		if (monthInt1 < 10) {
+			Month1="年0"+monthInt1 +"月";
+		}else {
+			Month1="年"+monthInt1 +"月";
+		}
+//判断月份
+		if (monthInt2 < 10) {
+			Month2="年0"+monthInt2 +"月";
+		}else {
+					Month2="年"+monthInt2+"月";
+				}
+//判断月份
+				if (monthInt3 < 10) {
+					Month3="年0"+monthInt3+"月";
+				}else {
+					Month3="年"+monthInt3+"月";
+				}
+//判断月份
+				if (monthInt1 < 10) {
+					Month4="年0"+monthInt4+"月";
+				}else {
+					Month4="年" + monthInt4+"月";
+				}
+//查询月份
+String monthString = year + Month;
+String mothString1 = year + Month1;
+String mothString2 = year + Month2;
+String mothString3 = year + Month3;
+String mothString4 = year + Month4;
 
 %>
 	<div class="header">
@@ -124,7 +180,7 @@ String username = (String)session.getAttribute("username");
 							class="table table-striped table-bordered table-hover">
 							<tbody>
 								<tr class="text-center">
-									<td>2018年05月通行账单</td>
+									<td><%=mothString1 %>通行账单</td>
 									<td>
 										<form action="QueryRecordDetailsServlet?starttime=2018/05/&&username=<%=username%>" method="post">
 											<input type="submit" class="btn btn-xs btn btn-danger"
@@ -134,7 +190,7 @@ String username = (String)session.getAttribute("username");
 									<td>2018年06月01日生成</td>
 								</tr>
 								<tr class="text-center">
-									<td>2017年04月通行账单</td>
+									<td><%=mothString2 %>通行账单</td>
 									<td>
 										<form action="QueryRecordDetailsServlet?starttime=2018/04/&&username=<%=username%>" method="post">
 											<input type="submit" class="btn btn-xs btn btn-danger"
@@ -154,7 +210,7 @@ String username = (String)session.getAttribute("username");
 									<td>2018年04月01日生成</td>
 								</tr>
 								<tr class="text-center">
-									<td>2018年02月通行账单</td>
+									<td><%=mothString4 %>通行账单</td>
 									<td>
 										<form action="QueryRecordDetailsServlet?starttime=2018/02/&&username=<%=username %>" method="post">
 											<input type="submit" class="btn btn-xs btn btn-danger"
