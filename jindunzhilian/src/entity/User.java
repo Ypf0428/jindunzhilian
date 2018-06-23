@@ -36,6 +36,6 @@ public class User {
 		return LTID;
 	}
 	public void setLTID(int LTID) {
-		LTID = LTID;
+		this.LTID = LTID;
 	}
 }

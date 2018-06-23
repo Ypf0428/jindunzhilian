@@ -18,5 +18,8 @@ public class UserService {
 	public boolean updateUser(User user,String username) {
 		return userdao.updateUser(user, username);
 	}
+	public boolean addUser(User user){
+		return userdao.addUser(user);
+	}
 	
 }

@@ -105,4 +105,12 @@ public class RecordService {
 
 		return record1;
 	}
+	
+	public List<Record> selectRecord(String username) {
+		return dao.selectRecord(username);
+	}
+
+	public List<Record> selectByPlate(String plate) {
+		return dao.selectByPlate(plate);
+	}
 }

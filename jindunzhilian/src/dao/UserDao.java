@@ -77,8 +77,8 @@ public class UserDao {
 				while(rs.next()) {
 					String uname = rs.getString("username");
 					String password = rs.getString("password");
-					
-					user = new User(username,password);
+					int LTID = rs.getInt("LTID");
+					user = new User(username,password,LTID);
 				}
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -143,6 +143,53 @@ public class UserDao {
 			}
 		}
 		return flag;
+		}
+		//增加用户信息
+		public boolean addUser(User user) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			boolean flag = true;
+			try {
+				// 连接数据库
+				conn = getDataSourceWithC3p0ByXML().getConnection();
+				// sql语句
+				String sql = "insert into userinformation values(?,?,?)";
+				pstmt = conn.prepareStatement(sql);
+				// 传参数
+				pstmt.setString(1, user.getUsername());
+				pstmt.setString(2, user.getPassword());
+				pstmt.setInt(3, user.getLTID());
+
+				int result = pstmt.executeUpdate();
+
+				if (result > 0) {
+					System.out.println("增加成功");
+					return true;
+				} else {
+					System.out.println("增加失败");
+					return false;
+				}
+
+			}catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+
+			} finally {
+				// 关闭连接
+				try {
+					if (pstmt != null) {
+						pstmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+
+				}
+			}
+			return false;
 		}
 		
 }

@@ -210,4 +210,34 @@ public class RecordDao {
 		}
 		return records;
 	}
+
+
+	public List<Record> selectRecord(String username) {
+		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
+		List<Record> records = new ArrayList<Record>();
+		String sql = "select plate,sum(monetary) sum from record where LTID=(select LTID from userinformation where username=?) group by plate";
+		Object[] obj = {username};
+		try {
+			records = runner.query(sql, new BeanListHandler<Record>(Record.class),obj);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return records;
+	}
+
+
+	public List<Record> selectByPlate(String plate) {
+		QueryRunner runner = new QueryRunner(JinDunUtil.getDataSourceWithC3p0ByXML());
+		List<Record> records = new ArrayList<Record>();
+		String sql = "select * from record where plate=?";
+		Object[] obj = {plate};
+		try {
+			records = runner.query(sql, new BeanListHandler<Record>(Record.class),obj);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return records;
+	}
 }

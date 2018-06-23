@@ -64,7 +64,7 @@ if(Failure != null){
 			<div class="row">
 				<div class="col-xs-4 pull-right">
 					<div class="logo_in">
-					 <form action="LoginServlet" method="post" onsubmit="return login()"> 
+					 <form action="LoginServlet" method="post"> 
 						<h2>用户登陆</h2>
 						<ul>
 							<li>
